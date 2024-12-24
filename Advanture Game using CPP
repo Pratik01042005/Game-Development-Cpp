@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to display game instructions
+void displayInstructions() {
+    cout << "Welcome to the Text-Based Adventure Game!" << endl;
+    cout << "Your goal is to explore the forest and find the hidden treasure." << endl;
+    cout << "Choose your actions wisely to succeed." << endl;
+    cout << "Commands: north, south, east, west, help, quit" << endl;
+    cout << endl;
+}
+
+// Function to handle player input
+string getPlayerInput() {
+    string input;
+    cout << "Enter your action: ";
+    cin >> input;
+    return input;
+}
+
+// Main game loop
+void playGame() {
+    string playerInput;
+    int score = 0;
+    bool hasTreasure = false;
+
+    // Game loop
+    while (true) {
+        cout << "You are in a dense forest. " << endl;
+        cout << "What would you like to do?" << endl;
+        playerInput = getPlayerInput();
+
+        if (playerInput == "north") {
+            cout << "You move north and discover a clear stream. You drink water and feel refreshed." << endl;
+            score += 10;
+        } else if (playerInput == "south") {
+            cout << "You move south and encounter a wild bear! You run back to safety." << endl;
+        } else if (playerInput == "east") {
+            cout << "You move east and find the hidden treasure chest!" << endl;
+            if (!hasTreasure) {
+                cout << "Congratulations! You found the treasure!" << endl;
+                score += 50;
+                hasTreasure = true;
+            } else {
+                cout << "You've already taken the treasure!" << endl;
+            }
+        } else if (playerInput == "west") {
+            cout << "You move west and find a peaceful meadow. You rest and regain energy." << endl;
+            score += 5;
+        } else if (playerInput == "help") {
+            displayInstructions();
+        } else if (playerInput == "quit") {
+            cout << "You have quit the game. Your final score is: " << score << endl;
+            break;
+        } else {
+            cout << "Invalid command. Try again." << endl;
+        }
+
+        cout << "Current score: " << score << endl;
+        cout << endl;
+    }
+}
+
+int main() {
+    displayInstructions();
+    playGame();
+    return 0;
+}
